@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7ff;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        #wifi-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: rgb(9, 161, 250);
+        }
+
+        input,
+        select,
+        button {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding: 8px;
+            border: 1px solid black;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #33ccff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #33ccff;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+        footer {
+      background-color: #0056b3;
+      color: white;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="wifi-icon">&#128246;</div>
+        <h1>Temperature Converter</h1>
+        <div></div>
+    </header>
+
+    <main>
+        <label for="temperature">Enter Temperature:</label>
+        <input type="text" id="temperature" placeholder="Enter temperature" required>
+
+        <label for="unit">Choose Unit:</label>
+        <select id="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+
+        <button onclick="convertTemperature()">Convert</button>
+
+        <div id="result"></div>
+    </main>
+
+    <script>
+        function convertTemperature() {
+            const temperatureInput = document.getElementById('temperature').value;
+            const unit = document.getElementById('unit').value;
+            const resultArea = document.getElementById('result');
+
+            // Validate input as a number
+            if (isNaN(temperatureInput)) {
+                alert('Please enter a valid number for temperature.');
+                return;
+            }
+
+            const temperature = parseFloat(temperatureInput);
+
+            // Perform the conversion
+            let convertedTemperature, convertedUnit;
+            if (unit === 'celsius') {
+                convertedTemperature = (temperature * 9 / 5) + 32;
+                convertedUnit = 'Fahrenheit';
+            } else {
+                convertedTemperature = (temperature - 32) * 5 / 9;
+                convertedUnit = 'Celsius';
+            }
+
+            // Display the result
+            resultArea.innerHTML = `Converted Temperature: ${convertedTemperature.toFixed(2)} ${convertedUnit}`;
+        }
+    </script>
+     <footer>
+        <p>&copy; 2023 Tanvi's converter. All rights reserved.</p>
+      </footer>
+</body>
+
+</html>
